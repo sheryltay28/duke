@@ -2,72 +2,84 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Duke {
-    public static void main(String[] args) {
-       Scanner sc = new Scanner(System.in);
-       ArrayList<Task> inputs = new ArrayList<>();
+    public static void main(String[] args) throws EmptyDescriptionException, WrongInputException {
+        Scanner sc = new Scanner(System.in);
+        ArrayList<Task> inputs = new ArrayList<>();
 
-       System.out.println("Hello! I'm Duke");
-       System.out.println("What can I do for you?");
+        System.out.println("Hello! I'm Duke");
+        System.out.println("What can I do for you?");
 
-       while (sc.hasNextLine()) {
-           String input = sc.nextLine();
-           String[] line = input.split(" ");
-           Task task = new Task(input);
-            if (input.equals("list")) {
-                System.out.println("Here are the tasks in your list");
-                for (int i = 0; i < inputs.size(); i++) {
-                   Task curr = inputs.get(i);
-                   int num = i + 1;
-                   System.out.println(num + ". " + curr);
+        try {
+            while (sc.hasNextLine()) {
+                String input = sc.nextLine();
+                String[] line = input.split(" ");
+                if (input.equals("list")) {
+                    System.out.println("Here are the tasks in your list");
+                    for (int i = 0; i < inputs.size(); i++) {
+                        Task curr = inputs.get(i);
+                        int num = i + 1;
+                        System.out.println(num + ". " + curr);
+                    }
+                } else if (line[0].equals("done")) {
+                    Task done = inputs.get(Integer.parseInt(line[1]) - 1);
+                    done.doTask();
+                    System.out.println("Nice! I've marked this task as done: ");
+                    System.out.println(done);
+                } else if (line[0].equals("todo")) {
+                    if (line.length == 1) {
+                        throw new EmptyDescriptionException();
+                    }
+                    String todoTask = line[1];
+                    for (int i = 2; i < line.length; i++) {
+                        todoTask += " " + line[i];
+                    }
+                    Todo newTodo = new Todo(todoTask);
+                    inputs.add(newTodo);
+                    System.out.println("Got it. I've added this task:");
+                    System.out.println(newTodo);
+                    System.out.println("Now you have " + inputs.size() + " tasks in the list.");
+                } else if (line[0].equals("deadline")) {
+                    String findDeadline[] = input.split("/");
+                    String by = findDeadline[1].substring(3);
+                    String findTask[] = findDeadline[0].split(" ");
+                    String deadlineTask = findTask[1];
+                    for (int i = 2; i < findTask.length; i++) {
+                        deadlineTask += " " + findTask[i];
+                    }
+                    Deadline deadline = new Deadline(deadlineTask, by);
+                    inputs.add(deadline);
+                    System.out.println("Got it. I've added this task:");
+                    System.out.println(deadline);
+                    System.out.println("Now you have " + inputs.size() + " tasks in the list.");
+                } else if (line[0].equals("event")) {
+                    String findTime[] = input.split("/");
+                    String at = findTime[1].substring(3);
+                    String findTask[] = findTime[0].split(" ");
+                    String eventTask = findTask[1];
+                    for (int i = 2; i < findTask.length; i++) {
+                        eventTask += " " + findTask[i];
+                    }
+                    Event event = new Event(eventTask, at);
+                    inputs.add(event);
+                    System.out.println("Got it. I've added this task:");
+                    System.out.println(event);
+                    System.out.println("Now you have " + inputs.size() + " tasks in the list.");
+                } else if (input.equals("bye")) {
+                    break;
+                } else {
+                    throw new WrongInputException();
                 }
-            } else if (line[0].equals("done")){
-                Task done = inputs.get(Integer.parseInt(line[1]) - 1);
-                done.doTask();
-                System.out.println("Nice! I've marked this task as done: ");
-                System.out.println(done);
-           } else if (line[0].equals("todo")) {
-                String todoTask = line[1];
-                for (int i = 2; i < line.length; i++) {
-                    todoTask += " " + line[i];
-                }
-                Todo newTodo = new Todo(todoTask);
-                inputs.add(newTodo);
-                System.out.println("Got it. I've added this task:");
-                System.out.println(newTodo);
-                System.out.println("Now you have " + inputs.size() + " tasks in the list.");
-            } else if (line[0].equals("deadline")) {
-                String findDeadline[] = input.split("/");
-                String by = findDeadline[1].substring(3);
-                String findTask[] = findDeadline[0].split(" ");
-                String deadlineTask = findTask[1];
-                for (int i = 2; i <findTask.length; i++) {
-                    deadlineTask += " " + findTask[i];
-                }
-                Deadline deadline = new Deadline(deadlineTask, by);
-                inputs.add(deadline);
-                System.out.println("Got it. I've added this task:");
-                System.out.println(deadline);
-                System.out.println("Now you have " + inputs.size() + " tasks in the list.");
-            } else if (line[0].equals("event")) {
-                String findTime[] = input.split("/");
-                String at = findTime[1].substring(3);
-                String findTask[] = findTime[0].split(" ");
-                String eventTask = findTask[1];
-                for (int i = 2; i < findTask.length; i++) {
-                    eventTask += " " + findTask[i];
-                }
-                Event event = new Event(eventTask, at);
-                inputs.add(event);
-                System.out.println("Got it. I've added this task:");
-                System.out.println(event);
-                System.out.println("Now you have " + inputs.size() + " tasks in the list.");
-            } else if (input.equals("bye")) {
-               break;
             }
-        }
 
-        System.out.println("Bye. Hope to see you again soon!");
-     }
+            System.out.println("Bye. Hope to see you again soon!");
+        } catch(EmptyDescriptionException ed) {
+            System.out.println("OOPS!!! The description of a todo cannot be empty.");
+
+        } catch(WrongInputException wi) {
+            System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(");
+
+        }
+    }
 }
 
 class Task {
@@ -130,4 +142,12 @@ class Event extends Task {
     public String toString() {
         return "[E]" + super.toString() + " (at: " + at + ")";
     }
+}
+
+class EmptyDescriptionException extends Exception {
+
+}
+
+class WrongInputException extends Exception {
+
 }
