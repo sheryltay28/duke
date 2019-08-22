@@ -39,6 +39,9 @@ public class Duke {
                     System.out.println(newTodo);
                     System.out.println("Now you have " + inputs.size() + " tasks in the list.");
                 } else if (line[0].equals("deadline")) {
+                    if (line.length == 1) {
+                        throw new EmptyDescriptionException();
+                    }
                     String findDeadline[] = input.split("/");
                     String by = findDeadline[1].substring(3);
                     String findTask[] = findDeadline[0].split(" ");
@@ -52,6 +55,9 @@ public class Duke {
                     System.out.println(deadline);
                     System.out.println("Now you have " + inputs.size() + " tasks in the list.");
                 } else if (line[0].equals("event")) {
+                    if (line.length == 1) {
+                        throw new EmptyDescriptionException();
+                    }
                     String findTime[] = input.split("/");
                     String at = findTime[1].substring(3);
                     String findTask[] = findTime[0].split(" ");
@@ -64,7 +70,14 @@ public class Duke {
                     System.out.println("Got it. I've added this task:");
                     System.out.println(event);
                     System.out.println("Now you have " + inputs.size() + " tasks in the list.");
-                } else if (input.equals("bye")) {
+                } else if (line[0].equals("delete")) {
+                    int index = Integer.parseInt(line[1]) - 1;
+                    System.out.println("Noted. I've removed this task:");
+                    System.out.println(inputs.get(index));
+                    inputs.remove(index);
+                    System.out.println("Now you have " + inputs.size() + " tasks in the list");
+                }
+                else if (input.equals("bye")) {
                     break;
                 } else {
                     throw new WrongInputException();
