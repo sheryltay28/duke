@@ -1,8 +1,28 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Duke {
-    public static void main(String[] args) throws EmptyDescriptionException, WrongInputException {
+
+    private static void appendToFile(String filePath, String textToAppend) throws IOException {
+        FileWriter fw = new FileWriter(filePath, true);
+        fw.write(textToAppend + "\n");
+        fw.close();
+    }
+
+    private static void rewriteFile(ArrayList list, String filePath) throws IOException{
+        FileWriter fw = new FileWriter(filePath);
+        for (int i = 0; i < list.size(); i++) {
+            String text = list.get(i).toString();
+            fw.write(text + "\n");
+        }
+        fw.close();
+    }
+
+    public static void main(String[] args) throws EmptyDescriptionException, WrongInputException, FileNotFoundException, IOException {
         Scanner sc = new Scanner(System.in);
         ArrayList<Task> inputs = new ArrayList<>();
 
@@ -10,6 +30,31 @@ public class Duke {
         System.out.println("What can I do for you?");
 
         try {
+            String filePath = "/Users/sheryl/CS2103/duke/src/main/java/Duke.txt";
+            File file = new File(filePath);
+            Scanner fileScanner = new Scanner(file);
+            while(fileScanner.hasNextLine()) {
+                //System.out.println("omg");
+                String line = fileScanner.nextLine();
+                //System.out.println("omg");
+                String[] words = line.split("|");
+                //System.out.println("or here");
+                if (words[0].equals("T")) {
+                    //System.out.println("Is it here");
+                    Todo task = new Todo(words[2]);
+                    inputs.add(task);
+                }
+                else if (words[0].equals("D")) {
+                    Deadline task = new Deadline(words[2], words[3]);
+                    inputs.add(task);
+                }
+                else if (words[0].equals("E")) {
+                    Event task = new Event(words[2], words[3]);
+                    inputs.add(task);
+                }
+            }
+            //System.out.print("HELLO");
+
             while (sc.hasNextLine()) {
                 String input = sc.nextLine();
                 String[] line = input.split(" ");
@@ -23,6 +68,7 @@ public class Duke {
                 } else if (line[0].equals("done")) {
                     Task done = inputs.get(Integer.parseInt(line[1]) - 1);
                     done.doTask();
+                    rewriteFile(inputs, filePath);
                     System.out.println("Nice! I've marked this task as done: ");
                     System.out.println(done);
                 } else if (line[0].equals("todo")) {
@@ -35,6 +81,7 @@ public class Duke {
                     }
                     Todo newTodo = new Todo(todoTask);
                     inputs.add(newTodo);
+                    appendToFile(filePath, newTodo.toString());
                     System.out.println("Got it. I've added this task:");
                     System.out.println(newTodo);
                     System.out.println("Now you have " + inputs.size() + " tasks in the list.");
@@ -51,6 +98,7 @@ public class Duke {
                     }
                     Deadline deadline = new Deadline(deadlineTask, by);
                     inputs.add(deadline);
+                    appendToFile(filePath, deadline.toString());
                     System.out.println("Got it. I've added this task:");
                     System.out.println(deadline);
                     System.out.println("Now you have " + inputs.size() + " tasks in the list.");
@@ -67,6 +115,7 @@ public class Duke {
                     }
                     Event event = new Event(eventTask, at);
                     inputs.add(event);
+                    appendToFile(filePath, event.toString());
                     System.out.println("Got it. I've added this task:");
                     System.out.println(event);
                     System.out.println("Now you have " + inputs.size() + " tasks in the list.");
@@ -75,6 +124,7 @@ public class Duke {
                     System.out.println("Noted. I've removed this task:");
                     System.out.println(inputs.get(index));
                     inputs.remove(index);
+                    rewriteFile(inputs, filePath);
                     System.out.println("Now you have " + inputs.size() + " tasks in the list");
                 }
                 else if (input.equals("bye")) {
@@ -111,9 +161,9 @@ class Task {
     @Override
     public String toString() {
         if (done) {
-            return "[✓] " + task;
+            return "|1| " + task;
         } else {
-            return "[✗] " + task;
+            return "|0| " + task;
         }
     }
 }
@@ -125,7 +175,7 @@ class Todo extends Task {
 
     @Override
     public String toString() {
-        return "[T]" + super.toString();
+        return "T" + super.toString();
     }
 }
 
@@ -139,7 +189,7 @@ class Deadline extends Task {
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + by + ")";
+        return "D" + super.toString() + " | " + by;
     }
 }
 
@@ -153,7 +203,7 @@ class Event extends Task {
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + at + ")";
+        return "E" + super.toString() + " | " + at;
     }
 }
 
