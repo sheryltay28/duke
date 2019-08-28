@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Calendar;
 
 public class Duke {
 
@@ -22,6 +23,69 @@ public class Duke {
         fw.close();
     }
 
+    private static Calendar inputConvertToCalendar(String input) {
+        String findDate[] = input.split("/");
+        int day = Integer.parseInt(findDate[0]);
+        int month = Integer.parseInt(findDate[1]) - 1;
+        String findTime[] = findDate[2].split(" ");
+        int year = Integer.parseInt(findTime[0]);
+        int hour = Integer.parseInt(findTime[1].substring(0, 2));
+        int minute = Integer.parseInt(findTime[1].substring(2));
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year, month, day, hour, minute);
+        return calendar;
+    }
+
+    private static int convertToInt(String month) {
+        if (month.equals("January")) {
+            return 0;
+        }
+        else if (month.equals("February")) {
+            return 1;
+        }
+        else if (month.equals("March")) {
+            return 2;
+        }
+        else if (month.equals("April")) {
+            return 3;
+        }
+        else if (month.equals("May")) {
+            return 4;
+        }
+        else if (month.equals("June")) {
+            return 5;
+        }
+        else if (month.equals("July")) {
+            return 6;
+        }
+        else if (month.equals("August")) {
+            return 7;
+        }
+        else if (month.equals("September")) {
+            return 8;
+        }
+        else if (month.equals("October")) {
+            return 9;
+        }
+        else if (month.equals("November")) {
+            return 10;
+        } else {
+            return 11;
+        }
+    }
+
+    private static Calendar fileConvertToCalendar(String input) {
+        String findDate[] = input.split(" ");
+        int day = Integer.parseInt(findDate[0]);
+        int month = convertToInt(findDate[1]);
+        int year = Integer.parseInt(findDate[2]);
+        int hour = Integer.parseInt(findDate[3].substring(0, 2));
+        int min = Integer.parseInt(findDate[3].substring(2));
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year, month, day, hour, min);
+        return calendar;
+    }
+
     public static void main(String[] args) throws EmptyDescriptionException, WrongInputException, FileNotFoundException, IOException {
         Scanner sc = new Scanner(System.in);
         ArrayList<Task> inputs = new ArrayList<>();
@@ -34,22 +98,18 @@ public class Duke {
             File file = new File(filePath);
             Scanner fileScanner = new Scanner(file);
             while(fileScanner.hasNextLine()) {
-                //System.out.println("omg");
                 String line = fileScanner.nextLine();
-                //System.out.println("omg");
-                String[] words = line.split("|");
-                //System.out.println("or here");
+                String[] words = line.split("\\|");
                 if (words[0].equals("T")) {
-                    //System.out.println("Is it here");
                     Todo task = new Todo(words[2]);
                     inputs.add(task);
                 }
                 else if (words[0].equals("D")) {
-                    Deadline task = new Deadline(words[2], words[3]);
+                    Deadline task = new Deadline(words[2], fileConvertToCalendar(words[3].substring(1)));
                     inputs.add(task);
                 }
                 else if (words[0].equals("E")) {
-                    Event task = new Event(words[2], words[3]);
+                    Event task = new Event(words[2], fileConvertToCalendar(words[3].substring(1)));
                     inputs.add(task);
                 }
             }
@@ -90,13 +150,15 @@ public class Duke {
                         throw new EmptyDescriptionException();
                     }
                     String findDeadline[] = input.split("/");
-                    String by = findDeadline[1].substring(3);
                     String findTask[] = findDeadline[0].split(" ");
+                    String findDate[] = input.split("by ");
+                    Calendar calendar = inputConvertToCalendar(findDate[1]);
                     String deadlineTask = findTask[1];
                     for (int i = 2; i < findTask.length; i++) {
                         deadlineTask += " " + findTask[i];
                     }
-                    Deadline deadline = new Deadline(deadlineTask, by);
+                    Deadline deadline = new Deadline(deadlineTask, calendar);
+                    //System.out.println(calendar);
                     inputs.add(deadline);
                     appendToFile(filePath, deadline.toString());
                     System.out.println("Got it. I've added this task:");
@@ -107,13 +169,14 @@ public class Duke {
                         throw new EmptyDescriptionException();
                     }
                     String findTime[] = input.split("/");
-                    String at = findTime[1].substring(3);
+                    String findDate[] = input.split("at ");
+                    Calendar calendar = inputConvertToCalendar(findDate[1]);
                     String findTask[] = findTime[0].split(" ");
                     String eventTask = findTask[1];
                     for (int i = 2; i < findTask.length; i++) {
                         eventTask += " " + findTask[i];
                     }
-                    Event event = new Event(eventTask, at);
+                    Event event = new Event(eventTask, calendar);
                     inputs.add(event);
                     appendToFile(filePath, event.toString());
                     System.out.println("Got it. I've added this task:");
@@ -158,6 +221,45 @@ class Task {
         this.done = true;
     }
 
+    public String getMonth(Calendar c) {
+        if (c.get(Calendar.MONTH) == 0) {
+            return "January";
+        }
+        else if (c.get(Calendar.MONTH) == 1) {
+            return "February";
+        }
+        else if (c.get(Calendar.MONTH) == 2) {
+            return "March";
+        }
+        else if (c.get(Calendar.MONTH) == 3) {
+            return "April";
+        }
+        else if (c.get(Calendar.MONTH) == 4) {
+            return "May";
+        }
+        else if (c.get(Calendar.MONTH) == 5) {
+            return "June";
+        }
+        else if (c.get(Calendar.MONTH) == 6) {
+            return "July";
+        }
+        else if (c.get(Calendar.MONTH) == 7) {
+            return "August";
+        }
+        else if (c.get(Calendar.MONTH) == 8) {
+            return "September";
+        }
+        else if (c.get(Calendar.MONTH) == 9) {
+            return "October";
+        }
+        else if (c.get(Calendar.MONTH) == 10) {
+            return "November";
+        }
+        else {
+            return "December";
+        }
+    }
+
     @Override
     public String toString() {
         if (done) {
@@ -180,30 +282,36 @@ class Todo extends Task {
 }
 
 class Deadline extends Task {
-    String by;
+    Calendar by;
 
-    public Deadline(String task, String by) {
+    public Deadline(String task, Calendar by) {
         super(task);
         this.by = by;
     }
 
     @Override
     public String toString() {
-        return "D" + super.toString() + " | " + by;
+        return "D" + super.toString() + " | " + by.get(Calendar.DAY_OF_MONTH) + " "
+                + getMonth(by) + " " + by.get(Calendar.YEAR) + " "
+                    + by.get(Calendar.HOUR_OF_DAY)
+                        + String.format("%02d", by.get(Calendar.MINUTE));
     }
 }
 
 class Event extends Task {
-    String at;
+    Calendar at;
 
-    public Event(String task, String at) {
+    public Event(String task, Calendar at) {
         super(task);
         this.at = at;
     }
 
     @Override
     public String toString() {
-        return "E" + super.toString() + " | " + at;
+        return "E" + super.toString() + " | " + at.get(Calendar.DAY_OF_MONTH) + " "
+                + getMonth(at) + " " + at.get(Calendar.YEAR) + " "
+                + at.get(Calendar.HOUR_OF_DAY)
+                + String.format("%02d", at.get(Calendar.MINUTE));
     }
 }
 
