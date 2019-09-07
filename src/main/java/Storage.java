@@ -13,16 +13,32 @@ public class Storage {
         this.filePath = filePath;
     }
 
+    /**
+     * returns string which represents file path.
+     * @return string.
+     */
     public String getFilePath() {
         return filePath;
     }
 
+    /**
+     * adds string in param to file.
+     * @param textToAppend string to be added to the file.
+     * @throws IOException if named file exists but is a directory rather than a regular file,
+     * does not exist but cannot be created, or cannot be opened for any other reason
+     */
     public void appendToFile(String textToAppend) throws IOException {
         FileWriter fw = new FileWriter(filePath, true);
         fw.write(textToAppend + "\n");
         fw.close();
     }
 
+    /**
+     * rewrites the whole file according to new task list.
+     * @param list list of tasks to be written into file.
+     * @throws IOException named file exists but is a directory rather than a regular file,
+     * does not exist but cannot be created, or cannot be opened for any other reason.
+     */
     public void rewriteFile(TaskList list) throws IOException {
         FileWriter fw = new FileWriter(filePath);
         for (int i = 0; i < list.size(); i++) {
@@ -32,6 +48,11 @@ public class Storage {
         fw.close();
     }
 
+    /**
+     * returns an integer representing the month according to the calendar.
+     * @param month string representing month.
+     * @return integer corresponding to month string.
+     */
     public int convertToInt(String month) {
         if (month.equals("January")) {
             return 0;
@@ -70,6 +91,11 @@ public class Storage {
         }
     }
 
+    /**
+     * returns a new Calendar object according to data from input string.
+     * @param input representing user input.
+     * @return Calendar object.
+     */
     public Calendar deadlineConvertToCalendar(String input) {
         String[] findDate = input.split(" ");
         int day = Integer.parseInt(findDate[0]);
@@ -82,6 +108,11 @@ public class Storage {
         return calendar;
     }
 
+    /**
+     * returns a new ArrayList of Calendar objects.
+     * @param input user input.
+     * @return Arraylist with 2 Calendar objects inside.
+     */
     public ArrayList eventConvertToCalendar(String input) {
         ArrayList<Calendar> calendars = new ArrayList<>();
         String[] findTo = input.split("-");
@@ -96,6 +127,11 @@ public class Storage {
         return calendars;
     }
 
+    /**
+     * returns a TaskList to add tasks according to content of file.
+     * @return TaskList object containing tasks from file.
+     * @throws FileNotFoundException if file cannot be found.
+     */
     public TaskList load() throws FileNotFoundException {
         TaskList inputs = new TaskList();
         filePath = "/Users/sheryl/CS2103/duke/src/main/java/Duke.txt";

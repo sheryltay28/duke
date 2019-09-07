@@ -7,6 +7,11 @@ public class Parser {
         this.input = input;
     }
 
+    /**
+     * returns a Command which handles user input.
+     * @return a Command.
+     * @throws DukeException if user input is incorrect.
+     */
     public Command parse() throws DukeException {
         String[] line = input.split(" ");
         if (line[0].equals("todo") || line[0].equals("deadline")

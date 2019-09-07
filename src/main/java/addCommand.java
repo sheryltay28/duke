@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class addCommand extends Command {
+    /**
+     * returns a Calendar object using values from input string.
+     * @param input string of user input.
+     * @return Calendar object.
+     */
     private Calendar deadlineConvertToCalendar(String input) {
         String findDate[] = input.split("/");
         int day = Integer.parseInt(findDate[0]);
@@ -17,6 +22,11 @@ public class addCommand extends Command {
         return calendar;
     }
 
+    /**
+     * returns an arraylist containing Calendar objects according to input string.
+     * @param input user input.
+     * @return an arraylist containing 2 Calendar objects representing to and from timings.
+     */
     private ArrayList eventConvertToCalendar(String input) {
         ArrayList<Calendar> calendars = new ArrayList<>();
         String[] findTo = input.split("-");
@@ -31,6 +41,15 @@ public class addCommand extends Command {
         return calendars;
     }
 
+    /**
+     * handles user's request to add a task to the list.
+     * @param tasks TaskList containing tasks to add new tasks to.
+     * @param input user input.
+     * @param storage Storage object.
+     * @throws DukeException if user input does not fit required input standard.
+     * @throws IOException named file exists but is a directory rather than a regular file,
+     * does not exist but cannot be created, or cannot be opened for any other reason
+     */
     void execute(TaskList tasks, String input, Storage storage) throws DukeException, IOException {
         String[] line = input.split(" ");
         if (line[0].equals("todo")) {
@@ -86,6 +105,10 @@ public class addCommand extends Command {
         }
     }
 
+    /**
+     * returns a boolean representing if this is an exit command,
+     * @return boolean.
+     */
     boolean isExit() {
         return false;
     }

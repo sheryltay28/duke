@@ -13,10 +13,10 @@ public class StorageTest {
 
     @Test
     public void testConvertToInt() {
+        storage = new Storage("/Users/sheryl/CS2103/duke/src/main/java/Storage.java");
         assertEquals(1, storage.convertToInt("February"));
     }
 }
-
 
 
 

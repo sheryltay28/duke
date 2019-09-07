@@ -19,6 +19,9 @@ public class Duke {
         }
     }
 
+    /**
+     * calls different classes to process user input.
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;
@@ -51,10 +54,18 @@ class Task {
         this.done = false;
     }
 
+    /**
+     * to set task as done.
+     */
     public void doTask() {
         this.done = true;
     }
 
+    /**
+     * returns a string which is the month corresponding to int of month in calendar.
+     * @param c to get integer representing month.
+     * @return the string which represents month.
+     */
     public String getMonth(Calendar c) {
         if (c.get(Calendar.MONTH) == 0) {
             return "January";
@@ -94,6 +105,10 @@ class Task {
         }
     }
 
+    /**
+     * returns string representation of task object.
+     * @return string.
+     */
     @Override
     public String toString() {
         if (done) {
@@ -109,6 +124,10 @@ class Todo extends Task {
         super(task);
     }
 
+    /**
+     * returns string representation of task object.
+     * @return string.
+     */
     @Override
     public String toString() {
         return "T" + super.toString();
@@ -123,6 +142,10 @@ class Deadline extends Task {
         this.by = by;
     }
 
+    /**
+     * returns string representation of task object.
+     * @return string.
+     */
     @Override
     public String toString() {
         return "D" + super.toString() + " | " + by.get(Calendar.DAY_OF_MONTH) + " "
@@ -143,6 +166,10 @@ class Event extends Task {
         this.to = to;
     }
 
+    /**
+     * returns string representation of task object.
+     * @return string.
+     */
     @Override
     public String toString() {
         return "E" + super.toString() + " | " + from.get(Calendar.DAY_OF_MONTH) + " "
