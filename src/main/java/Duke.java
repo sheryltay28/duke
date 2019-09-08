@@ -55,6 +55,14 @@ class Task {
     }
 
     /**
+     * returns a string which represents the task.
+     * @return a String.
+     */
+    public String getTask() {
+        return task;
+    }
+
+    /**
      * to set task as done.
      */
     public void doTask() {

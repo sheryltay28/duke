@@ -25,6 +25,8 @@ public class Parser {
             return new listCommand();
         } else if (line[0].equals("bye")) {
             return new exitCommand();
+        } else if (line[0].equals("find")) {
+            return new findCommand();
         } else {
             throw new DukeException();
         }
