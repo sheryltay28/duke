@@ -12,6 +12,7 @@ public class deleteCommand extends Command {
     String execute(TaskList tasks, String input, Storage storage, Ui ui) throws IOException {
         String[] line = input.split(" ");
         int index = Integer.parseInt(line[1]) - 1;
+        assert (index >= 0) : "index of task should not be negative";
         String delete = "Noted. I've removed this task:";
         delete += "\n" + tasks.get(index).toString();
         tasks.remove(index);

@@ -153,6 +153,7 @@ public class Duke {
     }
     
     public Duke(String filePath) {
+        assert filePath != null : "file path cannot be null";
         ui = new Ui();
         storage = new Storage(filePath);
         try {

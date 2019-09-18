@@ -11,7 +11,9 @@ public class doneCommand extends Command {
      */
     String execute(TaskList tasks, String input, Storage storage, Ui ui) throws IOException {
         String[] line = input.split(" ");
-        Task done = tasks.get(Integer.parseInt(line[1]) - 1);
+        int index = Integer.parseInt(line[1]) - 1;
+        assert index >= 0 : "index of task given should not be negative";
+        Task done = tasks.get(index);
         done.doTask();
         storage.rewriteFile(tasks);
         String command = "Nice! I've marked this task as done: ";
