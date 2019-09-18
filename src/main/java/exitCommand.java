@@ -5,8 +5,8 @@ public class exitCommand  extends Command {
      * @param input String of user input.
      * @param storage Storage object.
      */
-    void execute(TaskList tasks, String input, Storage storage) {
-        System.out.println("Bye. Hope to see you again soon!");
+    String execute(TaskList tasks, String input, Storage storage, Ui ui) {
+        return "Bye. Hope to see you again soon!";
     }
 
     /**

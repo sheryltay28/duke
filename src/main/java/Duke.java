@@ -136,7 +136,16 @@ public class Duke {
      * Replace this stub with your completed method.
      */
     public String getResponse(String input) {
-        return "Duke heard: " + input;
+        try {
+            parser = new Parser(input);
+            Command c = parser.parse();
+            return c.execute(tasks, input, storage, ui);
+        } catch (DukeException e) {
+            return "Please dont waste my time with meaningless words";
+        } catch (IOException e) {
+
+        }
+        return "";
     }
 
     public Duke() {
@@ -164,7 +173,7 @@ public class Duke {
                 String fullCommand = ui.readCommand();
                 parser = new Parser(fullCommand);
                 Command c = parser.parse();
-                c.execute(tasks, fullCommand, storage);
+                c.execute(tasks, fullCommand, storage, ui);
                 isExit = c.isExit();
             } catch (IOException e) {
                 ui.showError(e.getMessage());

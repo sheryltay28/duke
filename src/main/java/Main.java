@@ -9,7 +9,7 @@ import javafx.stage.Stage;
  * A GUI for Duke using FXML.
  */
 public class Main extends Application {
-    private Duke duke = new Duke();
+    private Duke duke = new Duke("/Users/sheryl/CS2103/duke/src/main/java/Duke.txt");
 
     @Override
     public void start(Stage stage) {

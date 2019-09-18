@@ -50,8 +50,9 @@ public class addCommand extends Command {
      * @throws IOException named file exists but is a directory rather than a regular file,
      * does not exist but cannot be created, or cannot be opened for any other reason
      */
-    void execute(TaskList tasks, String input, Storage storage) throws DukeException, IOException {
+    String execute(TaskList tasks, String input, Storage storage, Ui ui) throws DukeException, IOException {
         String[] line = input.split(" ");
+        Task task = new Task();
         if (line[0].equals("todo")) {
             if (line.length == 1) {
                 throw new DukeException();
@@ -60,49 +61,40 @@ public class addCommand extends Command {
             for (int i = 2; i < line.length; i++) {
                 todoTask += " " + line[i];
             }
-            Todo newTodo = new Todo(todoTask);
-            tasks.add(newTodo);
-            storage.appendToFile(newTodo.toString());
-            System.out.println("Got it. I've added this task:");
-            System.out.println(newTodo);
-            System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+            task = new Todo(todoTask);
         } else if (line[0].equals("deadline")) {
             if (line.length == 1) {
                 throw new DukeException();
             }
-            String findDeadline[] = input.split("/");
-            String findTask[] = findDeadline[0].split(" ");
-            String findDate[] = input.split("by ");
+            String[] findDeadline = input.split("/");
+            String[] findTask = findDeadline[0].split(" ");
+            String[] findDate = input.split("by ");
             Calendar calendar = deadlineConvertToCalendar(findDate[1]);
             String deadlineTask = findTask[1];
             for (int i = 2; i < findTask.length; i++) {
                 deadlineTask += " " + findTask[i];
             }
-            Deadline deadline = new Deadline(deadlineTask, calendar);
-            tasks.add(deadline);
-            storage.appendToFile(deadline.toString());
-            System.out.println("Got it. I've added this task:");
-            System.out.println(deadline);
-            System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+            task = new Deadline(deadlineTask, calendar);
         } else if (line[0].equals("event")) {
             if (line.length == 1) {
                 throw new DukeException();
             }
-            String findTime[] = input.split("/");
-            String findDate[] = input.split("at ");
+            String[] findTime = input.split("/");
+            String[] findDate = input.split("at ");
             ArrayList<Calendar> calendars = eventConvertToCalendar(findDate[1]);
-            String findTask[] = findTime[0].split(" ");
+            String[] findTask = findTime[0].split(" ");
             String eventTask = findTask[1];
             for (int i = 2; i < findTask.length; i++) {
                 eventTask += " " + findTask[i];
             }
-            Event event = new Event(eventTask, calendars.get(0), calendars.get(1));
-            tasks.add(event);
-            storage.appendToFile(event.toString());
-            System.out.println("Got it. I've added this task:");
-            System.out.println(event);
-            System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+            task = new Event(eventTask, calendars.get(0), calendars.get(1));
         }
+        tasks.add(task);
+        storage.appendToFile(task.toString());
+        String add = "Got it. I've added this task:";
+        add += "\n" + task.toString();
+        add += "\n" + "Now you have " + tasks.size() + " tasks in the list";
+        return add;
     }
 
     /**

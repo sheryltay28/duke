@@ -2,3 +2,6 @@ D|0|  return book  | 2 December 2019 1800
 T|0| read book
 E|0| borrow book | 20 January 2018 1200-1600
 T|0| attend meeting
+T|0| homework
+T|0| blah
+T|0| task

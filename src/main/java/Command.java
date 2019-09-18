@@ -10,7 +10,7 @@ abstract class Command {
      * @throws IOException named file exists but is a directory rather than a regular file,
      * does not exist but cannot be created, or cannot be opened for any other reason.
      */
-    abstract void execute(TaskList tasks, String input, Storage storage) throws
+    abstract String execute(TaskList tasks, String input, Storage storage, Ui ui) throws
             DukeException, IOException;
 
     /**

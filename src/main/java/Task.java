@@ -9,6 +9,10 @@ public class Task {
         this.done = false;
     }
 
+    public Task() {
+
+    }
+
     /**
      * returns a string which represents the task.
      * @return a String.
