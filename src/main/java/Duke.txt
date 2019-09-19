@@ -5,3 +5,4 @@ T|0|  attend meeting
 T|0|  homework
 T|0|  blah
 T|0|  task
+E|0| homework | 12 March 1999 2300-2359
