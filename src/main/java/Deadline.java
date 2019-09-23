@@ -8,6 +8,11 @@ public class Deadline extends Task {
         this.by = by;
     }
 
+    @Override
+    public Calendar getCalendar() {
+        return this.by;
+    }
+
     /**
      * returns string representation of task object.
      * @return string.

@@ -11,6 +11,16 @@ public class Event extends Task {
         this.to = to;
     }
 
+    @Override
+    public Calendar getCalendar() {
+        return this.from;
+    }
+
+    @Override
+    public Calendar getTo() {
+        return this.to;
+    }
+
     /**
      * returns string representation of task object.
      * @return string.

@@ -28,6 +28,18 @@ public class Task {
         this.done = true;
     }
 
+    public Calendar getCalendar() {
+        return null;
+    }
+
+    public Calendar getTo() {
+        return null;
+    }
+
+    public void changeTask(String newTask) {
+        this.task = newTask;
+    }
+
     /**
      * returns a string which is the month corresponding to int of month in calendar.
      * @param c to get integer representing month.

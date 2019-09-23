@@ -27,6 +27,8 @@ public class Parser {
             return new exitCommand();
         } else if (line[0].equals("find")) {
             return new findCommand();
+        } else if (line[0].equals("update")) {
+            return new updateCommand();
         } else {
             throw new DukeException();
         }
