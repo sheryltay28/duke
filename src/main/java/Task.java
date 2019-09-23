@@ -28,14 +28,26 @@ public class Task {
         this.done = true;
     }
 
+    /**
+     * returns Calendar object of start date and time if applicable.
+     * @return Calendar object.
+     */
     public Calendar getCalendar() {
         return null;
     }
 
+    /**
+     * returns Calendar object of end date and time if applicable.
+     * @return Calendar object.
+     */
     public Calendar getTo() {
         return null;
     }
 
+    /**
+     * updates the task description to new task.
+     * @param newTask
+     */
     public void changeTask(String newTask) {
         this.task = newTask;
     }

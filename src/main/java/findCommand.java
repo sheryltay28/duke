@@ -1,6 +1,16 @@
 import java.io.IOException;
 
 public class findCommand extends Command {
+    /**
+     * handles user's request to search for tasks based on a keyword.
+     * @param tasks TaskList of Tasks.
+     * @param input String of user input.
+     * @param storage Storage object.
+     * @param ui Ui object.
+     * @return String representing Duke's response.
+     * @throws DukeException
+     * @throws IOException
+     */
     String execute(TaskList tasks, String input, Storage storage, Ui ui) throws DukeException, IOException {
         String find = "Here are the matching tasks in your list:";
         String[] line = input.split(" ");

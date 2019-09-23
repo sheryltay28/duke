@@ -4,6 +4,8 @@ public class listCommand extends Command {
      * @param tasks TaskList of Tasks.
      * @param input String of user input.
      * @param storage Storage object.
+     * @param ui Ui object.
+     * @return String representing Duke's response.
      */
     String execute(TaskList tasks, String input, Storage storage, Ui ui) {
         String list = "Here are the tasks in your list";

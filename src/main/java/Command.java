@@ -6,6 +6,7 @@ abstract class Command {
      * @param tasks TaskList of Tasks.
      * @param input String of user input.
      * @param storage Storage object.
+     * @param ui Ui object.
      * @throws DukeException if user input does not follow input format.
      * @throws IOException named file exists but is a directory rather than a regular file,
      * does not exist but cannot be created, or cannot be opened for any other reason.

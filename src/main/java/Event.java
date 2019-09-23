@@ -11,11 +11,19 @@ public class Event extends Task {
         this.to = to;
     }
 
+    /**
+     * returns Calendar which represents start date and time.
+     * @return Calendar object.
+     */
     @Override
     public Calendar getCalendar() {
         return this.from;
     }
 
+    /**
+     * returns Calendar which represents end date and time.
+     * @return Calendar object.
+     */
     @Override
     public Calendar getTo() {
         return this.to;

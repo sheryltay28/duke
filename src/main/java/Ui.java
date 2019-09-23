@@ -1,4 +1,3 @@
-import java.util.Calendar;
 import java.util.Scanner;
 
 public class Ui {
@@ -30,42 +29,5 @@ public class Ui {
     public void showWelcome() {
         System.out.println("Hello! I'm Duke");
         System.out.println("What can I do for you?");
-    }
-
-    public void printTask(Task task) {
-        System.out.println(task);
-    }
-
-    public void printListCommand(TaskList tasks) {
-        System.out.println("Here are the tasks in your list");
-        for (int i = 0; i < tasks.size(); i++) {
-            Task curr = tasks.get(i);
-            int num = i + 1;
-            System.out.println(num + ". " + curr);
-        }
-    }
-
-    public void printDeleteCommand() {
-        System.out.println("Noted. I've removed this task:");
-    }
-
-    public void printSize(TaskList tasks) {
-        System.out.println("Now you have " + tasks.size() + " tasks in the list");
-}
-
-    public void printDoneCommand() {
-        System.out.println("Nice! I've marked this task as done: ");
-    }
-
-    public void printExitCommand() {
-        System.out.println("Bye. Hope to see you again soon!");
-    }
-
-    public void printFindCommand() {
-        System.out.println("Here are the matching tasks in your list:");
-    }
-
-    public void printAddCommand() {
-        System.out.println("Got it. I've added this task:");
     }
 }

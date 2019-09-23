@@ -48,12 +48,13 @@ public class addCommand extends Command {
 
     /**
      * handles user's request to add a task to the list.
-     * @param tasks TaskList containing tasks to add new tasks to.
-     * @param input user input.
+     * @param tasks TaskList of Tasks.
+     * @param input String of user input.
      * @param storage Storage object.
-     * @throws DukeException if user input does not fit required input standard.
-     * @throws IOException named file exists but is a directory rather than a regular file,
-     * does not exist but cannot be created, or cannot be opened for any other reason
+     * @param ui Ui object.
+     * @return String representing Duke's reply.
+     * @throws DukeException
+     * @throws IOException
      */
     String execute(TaskList tasks, String input, Storage storage, Ui ui) throws DukeException, IOException {
         String[] line = input.split(" ");

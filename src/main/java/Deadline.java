@@ -8,6 +8,10 @@ public class Deadline extends Task {
         this.by = by;
     }
 
+    /**
+     * returns a Calendar which represents date and time of deadline.
+     * @return Calendar object.
+     */
     @Override
     public Calendar getCalendar() {
         return this.by;

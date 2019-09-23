@@ -2,6 +2,16 @@ import java.io.IOException;
 import java.util.Calendar;
 
 public class updateCommand extends Command {
+    /**
+     * handles user's request to update details of a Task.
+     * @param tasks TaskList of Tasks.
+     * @param input String of user input.
+     * @param storage Storage object.
+     * @param ui Ui object.
+     * @return String representing Duke's response.
+     * @throws DukeException
+     * @throws IOException
+     */
     String execute(TaskList tasks, String input, Storage storage, Ui ui) throws DukeException, IOException {
         String[] line = input.split(" ");
         int index = Integer.parseInt(line[1]) - 1;

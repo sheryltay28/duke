@@ -1,9 +1,11 @@
 public class exitCommand  extends Command {
     /**
      * handles user's request to exit.
-     * @param tasks TaskList of tasks.
+     * @param tasks TaskList of Tasks.
      * @param input String of user input.
      * @param storage Storage object.
+     * @param ui Ui object.
+     * @return String representing Duke's reply.
      */
     String execute(TaskList tasks, String input, Storage storage, Ui ui) {
         return "Bye. Hope to see you again soon!";
