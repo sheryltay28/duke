@@ -22,6 +22,10 @@ javafx {
     modules = [ 'javafx.controls', 'javafx.fxml' ]
 }
 
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.5.0'
+}
+
 shadowJar {
     archiveBaseName = "duke"
     archiveVersion = "0.1.3"
@@ -31,5 +35,5 @@ shadowJar {
 
 application {
     // Change this to your main class.
-    mainClassName = "Launcher.java"
+    mainClassName = "Launcher"
 }

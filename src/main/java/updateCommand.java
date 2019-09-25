@@ -72,6 +72,10 @@ public class updateCommand extends Command {
         return command;
     }
 
+    /**
+     * returns a boolean to determine if this command is an exit command.
+     * @return a boolean.
+     */
     boolean isExit() {
         return false;
     }
