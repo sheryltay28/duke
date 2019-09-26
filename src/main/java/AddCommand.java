@@ -31,7 +31,7 @@ public class AddCommand extends Command {
      * @param input user input.
      * @return an arraylist containing 2 Calendar objects representing to and from timings.
      */
-    private ArrayList eventConvertToCalendar(String input) {
+    private ArrayList<Calendar> eventConvertToCalendar(String input) {
         ArrayList<Calendar> calendars = new ArrayList<>();
         String[] findTo = input.split("-");
         Calendar from = deadlineConvertToCalendar(findTo[0]);
