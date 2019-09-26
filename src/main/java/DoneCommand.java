@@ -18,7 +18,7 @@ public class DoneCommand extends Command {
         Task done = tasks.get(index);
         done.doTask();
         storage.rewriteFile(tasks);
-        String command = "Nice! I've marked this task as done: ";
+        String command = "Wow you finally accomplished something!: ";
         command += "\n" + done.toString();
         return command;
     }

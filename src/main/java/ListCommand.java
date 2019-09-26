@@ -8,7 +8,7 @@ public class ListCommand extends Command {
      * @return String representing Duke's response.
      */
     String execute(TaskList tasks, String input, Storage storage, Ui ui) {
-        String list = "Here are the tasks in your list";
+        String list = "Time to get pressured by the number of tasks in your list";
         for (int i = 0; i < tasks.size(); i++) {
             Task curr = tasks.get(i);
             int num = i + 1;

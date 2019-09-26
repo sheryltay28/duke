@@ -15,11 +15,11 @@ public class DeleteCommand extends Command {
         String[] line = input.split(" ");
         int index = Integer.parseInt(line[1]) - 1;
         assert (index >= 0) : "index of task should not be negative";
-        String delete = "Noted. I've removed this task:";
+        String delete = "I hope you are not just gonna pretend this task doesn't exist:";
         delete += "\n" + tasks.get(index).toString();
         tasks.remove(index);
         storage.rewriteFile(tasks);
-        delete += "\n" + "Now you have " + tasks.size() + " tasks in the list";
+        delete += "\n" + "Here's a reminder of your task in case you regret deleting it.";
         return delete;
     }
 

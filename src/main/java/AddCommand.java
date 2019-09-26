@@ -97,9 +97,9 @@ public class AddCommand extends Command {
         }
         tasks.add(task);
         storage.appendToFile(task.toString());
-        String add = "Got it. I've added this task:";
+        String add = "Fine I've taken my precious time to add this task:";
         add += "\n" + task.toString();
-        add += "\n" + "Now you have " + tasks.size() + " tasks in the list";
+        add += "\n" + "Now you have " + tasks.size() + " tasks in the list, time to start working!";
         return add;
     }
 

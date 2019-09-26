@@ -10,7 +10,7 @@ public class FindCommand extends Command {
      * @return String representing Duke's response.
      */
     String execute(TaskList tasks, String input, Storage storage, Ui ui) {
-        String find = "Here are the matching tasks in your list:";
+        String find = "I made a list of tasks that match your keyword:";
         String[] line = input.split(" ");
         String keyword = line[1];
         assert (!keyword.equals("")) : "you shouldn't be wasting my time by finding nothing";

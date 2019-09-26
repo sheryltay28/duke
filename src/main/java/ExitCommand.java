@@ -8,7 +8,7 @@ public class ExitCommand  extends Command {
      * @return String representing Duke's reply.
      */
     String execute(TaskList tasks, String input, Storage storage, Ui ui) {
-        return "Bye. Hope to see you again soon!";
+        return "Running away from your tasks so soon?";
     }
 
     /**
