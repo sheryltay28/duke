@@ -4,7 +4,7 @@ public class TaskList {
     private ArrayList<Task> tasks;
 
     public TaskList() {
-        tasks = new ArrayList<Task>();
+        tasks = new ArrayList<>();
     }
 
     /**
@@ -33,7 +33,7 @@ public class TaskList {
     }
 
     /**
-     * removes a Task from the TaskList
+     * removes a Task from the TaskList.
      * @param index index of Task which is to be removed.
      */
     public void remove(int index) {

@@ -1,4 +1,4 @@
-public class exitCommand  extends Command {
+public class ExitCommand  extends Command {
     /**
      * handles user's request to exit.
      * @param tasks TaskList of Tasks.

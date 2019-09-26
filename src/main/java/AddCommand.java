@@ -3,19 +3,19 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class addCommand extends Command {
+public class AddCommand extends Command {
     /**
      * returns a Calendar object using values from input string.
      * @param input string of user input.
      * @return Calendar object.
      */
     private Calendar deadlineConvertToCalendar(String input) {
-        String findDate[] = input.split("/");
+        String[] findDate = input.split("/");
         int day = Integer.parseInt(findDate[0]);
         assert (day >= 1 && day <= 31) : "day should be between 1 and 31";
         int month = Integer.parseInt(findDate[1]) - 1;
         assert (month >= 1 && month <= 12) : "month should be between 1 and 12";
-        String findTime[] = findDate[2].split(" ");
+        String[] findTime = findDate[2].split(" ");
         int year = Integer.parseInt(findTime[0]);
         assert (year > 0) : "year should not be negative";
         int hour = Integer.parseInt(findTime[1].substring(0, 2));
@@ -53,8 +53,9 @@ public class addCommand extends Command {
      * @param storage Storage object.
      * @param ui Ui object.
      * @return String representing Duke's reply.
-     * @throws DukeException
-     * @throws IOException
+     * @throws DukeException if user input does not follow input format.
+     * @throws IOException named file exists but is a directory rather than a regular file,
+     *     does not exist but cannot be created, or cannot be opened for any other reason.
      */
     String execute(TaskList tasks, String input, Storage storage, Ui ui) throws DukeException, IOException {
         String[] line = input.split(" ");
@@ -104,7 +105,7 @@ public class addCommand extends Command {
     }
 
     /**
-     * returns a boolean representing if this is an exit command,
+     * returns a boolean representing if this is an exit command.
      * @return boolean.
      */
     boolean isExit() {

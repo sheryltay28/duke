@@ -4,7 +4,12 @@ public class Event extends Task {
     Calendar from;
     Calendar to;
 
-
+    /**
+     * constructor for Event.
+     * @param task String representing task to do.
+     * @param from Calendar representing start time and date.
+     * @param to Calendar representing end time and date.
+     */
     public Event(String task, Calendar from, Calendar to) {
         super(task);
         this.from = from;

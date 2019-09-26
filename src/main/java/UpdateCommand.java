@@ -1,7 +1,7 @@
 import java.io.IOException;
 import java.util.Calendar;
 
-public class updateCommand extends Command {
+public class UpdateCommand extends Command {
     /**
      * handles user's request to update details of a Task.
      * @param tasks TaskList of Tasks.
@@ -9,10 +9,9 @@ public class updateCommand extends Command {
      * @param storage Storage object.
      * @param ui Ui object.
      * @return String representing Duke's response.
-     * @throws DukeException
-     * @throws IOException
+     * @throws DukeException if user input does not follow input format.
      */
-    String execute(TaskList tasks, String input, Storage storage, Ui ui) throws DukeException, IOException {
+    String execute(TaskList tasks, String input, Storage storage, Ui ui) throws DukeException {
         String[] line = input.split(" ");
         int index = Integer.parseInt(line[1]) - 1;
         String inst = line[2];

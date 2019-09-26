@@ -1,6 +1,6 @@
 import java.io.IOException;
 
-public class doneCommand extends Command {
+public class DoneCommand extends Command {
     /**
      * handles user's request to mark a task as done.
      * @param tasks TaskList of Tasks.
@@ -8,7 +8,8 @@ public class doneCommand extends Command {
      * @param storage Storage object.
      * @param ui Ui object.
      * @return String representing Duke's response.
-     * @throws IOException
+     * @throws IOException named file exists but is a directory rather than a regular file,
+     *     does not exist but cannot be created, or cannot be opened for any other reason.
      */
     String execute(TaskList tasks, String input, Storage storage, Ui ui) throws IOException {
         String[] line = input.split(" ");

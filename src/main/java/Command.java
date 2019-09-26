@@ -9,7 +9,7 @@ abstract class Command {
      * @param ui Ui object.
      * @throws DukeException if user input does not follow input format.
      * @throws IOException named file exists but is a directory rather than a regular file,
-     * does not exist but cannot be created, or cannot be opened for any other reason.
+     *     does not exist but cannot be created, or cannot be opened for any other reason.
      */
     abstract String execute(TaskList tasks, String input, Storage storage, Ui ui) throws
             DukeException, IOException;

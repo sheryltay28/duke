@@ -26,7 +26,7 @@ public class Storage {
      * adds string in param to file.
      * @param textToAppend string to be added to the file.
      * @throws IOException if named file exists but is a directory rather than a regular file,
-     * does not exist but cannot be created, or cannot be opened for any other reason
+     *     does not exist but cannot be created, or cannot be opened for any other reason
      */
     public void appendToFile(String textToAppend) throws IOException {
         FileWriter fw = new FileWriter(filePath, true);
@@ -38,7 +38,7 @@ public class Storage {
      * rewrites the whole file according to new task list.
      * @param list list of tasks to be written into file.
      * @throws IOException named file exists but is a directory rather than a regular file,
-     * does not exist but cannot be created, or cannot be opened for any other reason.
+     *     does not exist but cannot be created, or cannot be opened for any other reason.
      */
     public void rewriteFile(TaskList list) throws IOException {
         FileWriter fw = new FileWriter(filePath);
@@ -57,35 +57,25 @@ public class Storage {
     public int convertToInt(String month) {
         if (month.equals("January")) {
             return 0;
-        }
-        else if (month.equals("February")) {
+        } else if (month.equals("February")) {
             return 1;
-        }
-        else if (month.equals("March")) {
+        } else if (month.equals("March")) {
             return 2;
-        }
-        else if (month.equals("April")) {
+        } else if (month.equals("April")) {
             return 3;
-        }
-        else if (month.equals("May")) {
+        } else if (month.equals("May")) {
             return 4;
-        }
-        else if (month.equals("June")) {
+        } else if (month.equals("June")) {
             return 5;
-        }
-        else if (month.equals("July")) {
+        } else if (month.equals("July")) {
             return 6;
-        }
-        else if (month.equals("August")) {
+        } else if (month.equals("August")) {
             return 7;
-        }
-        else if (month.equals("September")) {
+        } else if (month.equals("September")) {
             return 8;
-        }
-        else if (month.equals("October")) {
+        } else if (month.equals("October")) {
             return 9;
-        }
-        else if (month.equals("November")) {
+        } else if (month.equals("November")) {
             return 10;
         } else {
             return 11;

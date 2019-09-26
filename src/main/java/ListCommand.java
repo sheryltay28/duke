@@ -1,4 +1,4 @@
-public class listCommand extends Command {
+public class ListCommand extends Command {
     /**
      * executes user's request of displaying list.
      * @param tasks TaskList of Tasks.

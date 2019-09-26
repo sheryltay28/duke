@@ -16,19 +16,19 @@ public class Parser {
         String[] line = input.split(" ");
         if (line[0].equals("todo") || line[0].equals("deadline")
             || line[0].equals("event")) {
-            return new addCommand();
+            return new AddCommand();
         } else if (line[0].equals("done")) {
-            return new doneCommand();
+            return new DoneCommand();
         } else if (line[0].equals("delete")) {
-            return new deleteCommand();
+            return new DeleteCommand();
         } else if (line[0].equals("list")) {
-            return new listCommand();
+            return new ListCommand();
         } else if (line[0].equals("bye")) {
-            return new exitCommand();
+            return new ExitCommand();
         } else if (line[0].equals("find")) {
-            return new findCommand();
+            return new FindCommand();
         } else if (line[0].equals("update")) {
-            return new updateCommand();
+            return new UpdateCommand();
         } else {
             throw new DukeException();
         }

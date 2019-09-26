@@ -46,7 +46,7 @@ public class Task {
 
     /**
      * updates the task description to new task.
-     * @param newTask
+     * @param newTask String representing new task to be changed to.
      */
     public void changeTask(String newTask) {
         this.task = newTask;
@@ -60,38 +60,27 @@ public class Task {
     public String getMonth(Calendar c) {
         if (c.get(Calendar.MONTH) == 0) {
             return "January";
-        }
-        else if (c.get(Calendar.MONTH) == 1) {
+        } else if (c.get(Calendar.MONTH) == 1) {
             return "February";
-        }
-        else if (c.get(Calendar.MONTH) == 2) {
+        } else if (c.get(Calendar.MONTH) == 2) {
             return "March";
-        }
-        else if (c.get(Calendar.MONTH) == 3) {
+        } else if (c.get(Calendar.MONTH) == 3) {
             return "April";
-        }
-        else if (c.get(Calendar.MONTH) == 4) {
+        } else if (c.get(Calendar.MONTH) == 4) {
             return "May";
-        }
-        else if (c.get(Calendar.MONTH) == 5) {
+        } else if (c.get(Calendar.MONTH) == 5) {
             return "June";
-        }
-        else if (c.get(Calendar.MONTH) == 6) {
+        } else if (c.get(Calendar.MONTH) == 6) {
             return "July";
-        }
-        else if (c.get(Calendar.MONTH) == 7) {
+        } else if (c.get(Calendar.MONTH) == 7) {
             return "August";
-        }
-        else if (c.get(Calendar.MONTH) == 8) {
+        } else if (c.get(Calendar.MONTH) == 8) {
             return "September";
-        }
-        else if (c.get(Calendar.MONTH) == 9) {
+        } else if (c.get(Calendar.MONTH) == 9) {
             return "October";
-        }
-        else if (c.get(Calendar.MONTH) == 10) {
+        } else if (c.get(Calendar.MONTH) == 10) {
             return "November";
-        }
-        else {
+        } else {
             return "December";
         }
     }
