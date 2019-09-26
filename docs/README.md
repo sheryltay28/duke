@@ -23,43 +23,55 @@ Format: "todo <task description>"
 
 ### Deadline
 Adds a deadline task into the task list. A confirmation will be sent if it is successfully added.
+
 Format: "deadline <task description> /by dd/mm/yyyy hhmm"
 
 
 
 ### Event
 Adds an Event task into the task list. A confirmation will be sent if it is successfully added.
+
 Format: "event <task description> /at dd/mm/yyyy hhmm-hhmm"
 
 
 ### List
 Displays the list of tasks that user added previously. Also shows whether tasks are done.
+
 Format: "list"
 
 
 ### Done
 Marks a task as done. 1 indicates a task is done while 0 indicates a task is not done.
+
 Format: "done <integer>" (integer indicates position of task in the list.)
 
 
 ### Delete
 Deletes a task from the list.
+
 Format: "delete <integer>" (integer indicates position of task in the list.)
 
 
 ### Find
 Returns tasks which contains keyword typed by user.
+
 Format: "find <keyword>"
 
 
 ### Update
 Updates task description or date and time of task.
+
 Format 1 (for todo, deadline, event): "update <integer> task <new task description>"
+
 Format 2 (for deadline, event): "update <integer> date <new date>"
+
 Format 3 (for deadline, event): "update <integer> time <new time>"
+
 Format 4 (for event): "update <integer> end <new end time>"
+
 
 
 ### Bye
 Exits the program.
+
 Format: "bye"
