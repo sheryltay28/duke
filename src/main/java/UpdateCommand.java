@@ -1,7 +1,8 @@
-import java.io.IOException;
 import java.util.Calendar;
 
 public class UpdateCommand extends Command {
+    Boolean isTodo;
+    Boolean isDeadline;
     /**
      * handles user's request to update details of a Task.
      * @param tasks TaskList of Tasks.
@@ -41,7 +42,8 @@ public class UpdateCommand extends Command {
             }
         } else if (inst.equals("start")) {
             String[] taskString = task.toString().split("\\|");
-            if (taskString[0].equals("T")) {
+            isTodo = taskString[0].equals("T");
+            if (isTodo) {
                 throw new DukeException();
             } else {
                 String time = line[3];
@@ -55,7 +57,9 @@ public class UpdateCommand extends Command {
             }
         } else if (inst.equals("end")) {
             String[] taskString = task.toString().split("\\|");
-            if (taskString[0].equals("T") || taskString[0].equals("D")) {
+            isTodo = taskString[0].equals("T");
+            isDeadline = taskString[0].equals("D");
+            if (isTodo || isDeadline) {
                 throw new DukeException();
             } else {
                 String time = line[3];
