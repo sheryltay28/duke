@@ -18,6 +18,7 @@ With this chatbot, you will never have to worry about forgetting your tasks agai
 
 ### Todo
 Adds a todo task into the task list. A confirmation will be sent if it is successfully added.
+
 Format: "todo <task description>"
 
 
