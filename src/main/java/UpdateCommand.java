@@ -40,7 +40,7 @@ public class UpdateCommand extends Command {
                 calendar.set(Calendar.MONTH, month);
                 calendar.set(Calendar.YEAR, year);
             }
-        } else if (inst.equals("start")) {
+        } else if (inst.equals("time")) {
             String[] taskString = task.toString().split("\\|");
             isTodo = taskString[0].equals("T");
             if (isTodo) {
