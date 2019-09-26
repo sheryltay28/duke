@@ -14,10 +14,12 @@ public class UpdateCommand extends Command {
     String execute(TaskList tasks, String input, Storage storage, Ui ui) throws DukeException {
         String[] line = input.split(" ");
         int index = Integer.parseInt(line[1]) - 1;
+        assert (index > 0) : "index should not be negative";
         String inst = line[2];
         Task task = tasks.get(index);
         if (inst.equals("task")) {
             String newTask = line[3];
+            assert (!newTask.equals("")) : "new task string should not be empty";
             task.changeTask(newTask);;
         } else if (inst.equals("date")) {
             String[] taskString = task.toString().split("\\|");
