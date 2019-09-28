@@ -104,7 +104,7 @@ public class Storage {
      * @param input user input.
      * @return Arraylist with 2 Calendar objects inside.
      */
-    public ArrayList eventConvertToCalendar(String input) {
+    public ArrayList<Calendar> eventConvertToCalendar(String input) {
         ArrayList<Calendar> calendars = new ArrayList<>();
         String[] findTo = input.split("-");
         Calendar from = deadlineConvertToCalendar(findTo[0]);
