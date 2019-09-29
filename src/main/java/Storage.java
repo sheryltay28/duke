@@ -125,7 +125,6 @@ public class Storage {
      */
     public TaskList load() throws FileNotFoundException {
         TaskList inputs = new TaskList();
-        filePath = "/Users/sheryl/CS2103/duke/src/main/java/Duke.txt";
         File file = new File(filePath);
         Scanner fileScanner = new Scanner(file);
         while (fileScanner.hasNextLine()) {

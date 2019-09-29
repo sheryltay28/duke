@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -20,12 +21,32 @@ public class Duke {
         } catch (DukeException e) {
             return "Please don't waste my time with meaningless words";
         } catch (IOException e) {
-            return "Please don't waste my time with meaningless words";
+            return "Guess there's something wrong with your file so u can't do anything today";
         }
     }
 
+    /**
+     * Constructor for Duke which creates new file.
+     */
     public Duke() {
-
+        ui = new Ui();
+        try {
+            String newDirectoryPath = System.getProperty("user.dir") + File.separator + "Lib";
+            File newDirectory = new File(newDirectoryPath);
+            String newFilePath = newDirectoryPath + File.separator + "Hermione.txt";
+            File newFile = new File(newFilePath);
+            boolean canCreateDirectory = newDirectory.mkdir();
+            if (canCreateDirectory) {
+                newFile.createNewFile();
+                System.out.println("New file and directory created.");
+            } else {
+                System.out.println("Directory already exists");
+            }
+            storage = new Storage(newFilePath);
+            tasks = storage.load();
+        } catch (IOException e) {
+            ui.showError(e.getMessage());
+        }
     }
 
     /**

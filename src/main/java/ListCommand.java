@@ -8,7 +8,7 @@ public class ListCommand extends Command {
      * @return String representing Duke's response.
      */
     String execute(TaskList tasks, String input, Storage storage, Ui ui) {
-        if(tasks.size() == 0) {
+        if (tasks.size() == 0) {
             return "Your list is empty, are you sure you are that free?";
         } else {
             String list = "Time to get pressured by the number of tasks in your list";
