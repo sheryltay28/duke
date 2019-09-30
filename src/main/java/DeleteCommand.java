@@ -11,10 +11,15 @@ public class DeleteCommand extends Command {
      * @throws IOException named file exists but is a directory rather than a regular file,
      *     does not exist but cannot be created, or cannot be opened for any other reason.
      */
-    String execute(TaskList tasks, String input, Storage storage, Ui ui) throws IOException {
+    String execute(TaskList tasks, String input, Storage storage, Ui ui) throws IOException, DukeException {
         String[] line = input.split(" ");
+        if (line.length == 1) {
+            throw new DukeException("Delete should be of the format 'delete <integer>'");
+        }
         int index = Integer.parseInt(line[1]) - 1;
-        assert (index >= 0) : "index of task should not be negative";
+        if (index < 0 || index > tasks.size()) {
+            throw new DukeException("Please give me a valid index to work with");
+        }
         String delete = "I hope you are not just gonna pretend this task doesn't exist:";
         delete += "\n" + tasks.get(index).toString();
         tasks.remove(index);

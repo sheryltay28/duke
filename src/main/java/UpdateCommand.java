@@ -15,27 +15,40 @@ public class UpdateCommand extends Command {
 
     String execute(TaskList tasks, String input, Storage storage, Ui ui) throws DukeException {
         String[] line = input.split(" ");
+        if (line.length == 1) {
+            throw new DukeException("Update should be of the format 'update <integer> task/date/time/end <new>'");
+        }
         int index = Integer.parseInt(line[1]) - 1;
-        assert (index > 0) : "index should not be negative";
+        if (index < 0 || index > tasks.size()) {
+            throw new DukeException("Please give me a valid index to work with");
+        }
         String inst = line[2];
         Task task = tasks.get(index);
         if (inst.equals("task")) {
             String newTask = line[3];
-            assert (!newTask.equals("")) : "new task string should not be empty";
+            if (newTask.equals("")) {
+                throw new DukeException("new task string should not be empty");
+            }
             task.changeTask(newTask);;
         } else if (inst.equals("date")) {
             String[] taskString = task.toString().split("\\|");
             if (taskString[0].equals("T")) {
-                throw new DukeException();
+                throw new DukeException("There's no date to change for a todo task.");
             } else {
                 String date = line[3];
                 String[] findDate = date.split("/");
                 int day = Integer.parseInt(findDate[0]);
-                assert (day >= 1 && day <= 31) : "day should be between 1 and 31";
+                if (day < 1 || day > 31) {
+                    throw new DukeException("day should be between 1 and 31");
+                }
                 int month = Integer.parseInt(findDate[1]) - 1;
-                assert (month >= 1 && month <= 12) : "month should be between 1 and 12";
+                if (month < 1 || month > 12) {
+                    throw new DukeException("month should be between 1 and 12");
+                }
                 int year = Integer.parseInt((findDate[2]));
-                assert (year > 0) : "year should not be negative";
+                if (year < 1) {
+                    throw new DukeException("year should not be negative");
+                }
                 Calendar calendar = task.getCalendar();
                 calendar.set(Calendar.DAY_OF_MONTH, day);
                 calendar.set(Calendar.MONTH, month);
@@ -45,13 +58,17 @@ public class UpdateCommand extends Command {
             String[] taskString = task.toString().split("\\|");
             isTodo = taskString[0].equals("T");
             if (isTodo) {
-                throw new DukeException();
+                throw new DukeException("There's no time to change for a todo task");
             } else {
                 String time = line[3];
                 int hour = Integer.parseInt(time.substring(0, 2));
-                assert (hour > 0 && hour <= 24) : "hour should be between 1 and 24";
+                if (hour < 0 || hour > 24) {
+                    throw new DukeException("hour should be between 0 and 24");
+                }
                 int min = Integer.parseInt((time.substring(2)));
-                assert (min > 0 && min <= 59) : "minute should be between 1 and 59";
+                if (min < 0 || min > 59) {
+                    throw new DukeException("minute should be between 0 and 59");
+                }
                 Calendar calendar = task.getCalendar();
                 calendar.set(Calendar.HOUR_OF_DAY, hour);
                 calendar.set(Calendar.MINUTE, min);
@@ -61,13 +78,17 @@ public class UpdateCommand extends Command {
             isTodo = taskString[0].equals("T");
             isDeadline = taskString[0].equals("D");
             if (isTodo || isDeadline) {
-                throw new DukeException();
+                throw new DukeException("There's no end time to change for a todo/deadline task");
             } else {
                 String time = line[3];
                 int hour = Integer.parseInt(time.substring(0, 2));
-                assert (hour > 0 && hour <= 24) : "hour should be between 1 and 24";
+                if (hour < 0 || hour > 24) {
+                    throw new DukeException("hour should be between 0 and 24");
+                }
                 int min = Integer.parseInt((time.substring(2)));
-                assert (min > 0 && min <= 59) : "minute should be between 1 and 59";
+                if (min < 0 || min > 59) {
+                    throw new DukeException("minute should be between 0 and 59");
+                }
                 Calendar calendar = task.getTo();
                 calendar.set(Calendar.HOUR_OF_DAY, hour);
                 calendar.set(Calendar.MINUTE, min);

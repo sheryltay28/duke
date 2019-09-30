@@ -29,7 +29,8 @@ public class Parser {
         } else if (line[0].equals("update")) {
             return new UpdateCommand();
         } else {
-            throw new DukeException();
+            throw new DukeException("I only support requests for todo, deadline, event, done, delete, "
+                    + "list, bye, find, update");
         }
     }
 

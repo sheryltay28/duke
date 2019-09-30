@@ -19,7 +19,7 @@ public class Duke {
             Command c = parser.parse();
             return c.execute(tasks, input, storage, ui);
         } catch (DukeException e) {
-            return "Please don't waste my time with meaningless words";
+            return e.getMessage();
         } catch (IOException e) {
             return "Guess there's something wrong with your file so u can't do anything today";
         }
