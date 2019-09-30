@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Calendar;
 
 public class UpdateCommand extends Command {
@@ -13,9 +14,9 @@ public class UpdateCommand extends Command {
      * @throws DukeException if user input does not follow input format.
      */
 
-    String execute(TaskList tasks, String input, Storage storage, Ui ui) throws DukeException {
+    String execute(TaskList tasks, String input, Storage storage, Ui ui) throws DukeException, IOException {
         String[] line = input.split(" ");
-        if (line.length == 1) {
+        if (line.length != 4) {
             throw new DukeException("Update should be of the format 'update <integer> task/date/time/end <new>'");
         }
         int index = Integer.parseInt(line[1]) - 1;
@@ -29,7 +30,7 @@ public class UpdateCommand extends Command {
             if (newTask.equals("")) {
                 throw new DukeException("new task string should not be empty");
             }
-            task.changeTask(newTask);;
+            task.changeTask(newTask);
         } else if (inst.equals("date")) {
             String[] taskString = task.toString().split("\\|");
             if (taskString[0].equals("T")) {
@@ -94,6 +95,7 @@ public class UpdateCommand extends Command {
                 calendar.set(Calendar.MINUTE, min);
             }
         }
+        storage.rewriteFile(tasks);
         String command = "Alright, I've updated your task accordingly.";
         command += "\n" + task.toString();
         return command;

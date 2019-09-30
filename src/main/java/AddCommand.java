@@ -85,7 +85,7 @@ public class AddCommand extends Command {
             }
             String[] findDeadline = input.split("/");
             String[] findTask = findDeadline[0].split(" ");
-            String[] findDate = input.split("by ");
+            String[] findDate = input.split("/by ");
             Calendar calendar = deadlineConvertToCalendar(findDate[1]);
             String deadlineTask = findTask[1];
             for (int i = 2; i < findTask.length; i++) {
@@ -98,7 +98,7 @@ public class AddCommand extends Command {
                         + "/at dd/mm/yyyy hhmm-hhmm'");
             }
             String[] findTime = input.split("/");
-            String[] findDate = input.split("at ");
+            String[] findDate = input.split("/at ");
             ArrayList<Calendar> calendars = eventConvertToCalendar(findDate[1]);
             String[] findTask = findTime[0].split(" ");
             String eventTask = findTask[1];

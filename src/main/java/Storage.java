@@ -132,13 +132,22 @@ public class Storage {
             String[] words = line.split("\\|");
             if (words[0].equals("T")) {
                 Todo task = new Todo(words[2]);
+                if (words[1].equals("1")) {
+                    task.doTask();
+                }
                 inputs.add(task);
             } else if (words[0].equals("D")) {
                 Deadline task = new Deadline(words[2], deadlineConvertToCalendar(words[3].substring(1)));
+                if (words[1].equals("1")) {
+                    task.doTask();
+                }
                 inputs.add(task);
             } else if (words[0].equals("E")) {
                 ArrayList<Calendar> calendars = eventConvertToCalendar(words[3].substring(1));
                 Event task = new Event(words[2], calendars.get(0), calendars.get(1));
+                if (words[1].equals("1")) {
+                    task.doTask();
+                }
                 inputs.add(task);
             }
         }
