@@ -48,6 +48,10 @@ public class AddCommand extends Command {
         calendars.add(from);
         int toHour = Integer.parseInt(findTo[1].substring(0, 2));
         int toMin = Integer.parseInt(findTo[1].substring(2));
+        String[] startTime = findTo[0].split(" ");
+        if (Integer.parseInt(startTime[1]) >= Integer.parseInt(findTo[1])) {
+            throw new DukeException("You can't end before you start, please check properly before typing...");
+        }
         Calendar to = Calendar.getInstance();
         to.set(Calendar.HOUR_OF_DAY, toHour);
         to.set(Calendar.MINUTE, toMin);

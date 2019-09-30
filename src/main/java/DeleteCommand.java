@@ -17,7 +17,7 @@ public class DeleteCommand extends Command {
             throw new DukeException("Delete should be of the format 'delete <integer>'");
         }
         int index = Integer.parseInt(line[1]) - 1;
-        if (index < 0 || index > tasks.size()) {
+        if (index < 0 || index > tasks.size() - 1) {
             throw new DukeException("Please give me a valid index to work with");
         }
         String delete = "I hope you are not just gonna pretend this task doesn't exist:";

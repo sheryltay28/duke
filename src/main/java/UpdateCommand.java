@@ -20,7 +20,7 @@ public class UpdateCommand extends Command {
             throw new DukeException("Update should be of the format 'update <integer> task/date/time/end <new>'");
         }
         int index = Integer.parseInt(line[1]) - 1;
-        if (index < 0 || index > tasks.size()) {
+        if (index < 0 || index > tasks.size() - 1) {
             throw new DukeException("Please give me a valid index to work with");
         }
         String inst = line[2];

@@ -17,7 +17,7 @@ public class DoneCommand extends Command {
             throw new DukeException("Done should be of the format 'done <integer>'");
         }
         int index = Integer.parseInt(line[1]) - 1;
-        if (index < 0 || index > tasks.size()) {
+        if (index < 0 || index > tasks.size() - 1) {
             throw new DukeException("Please give me a valid index to work with");
         }
         Task done = tasks.get(index);
